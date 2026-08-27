@@ -575,13 +575,51 @@ body {
     /* THE GLOBAL MULTI-PAGE MOBILE RESET SAFETY GUARD */
     img { max-width: 100% !important; height: auto !important; }
     html, body { max-width: 100vw !important; overflow-x: hidden !important; }
-    .contact-layout-container { padding-top: 140px; width: 100%; max-width: 100%; overflow: hidden; }
-    .contact-grid-card { grid-template-columns: 1fr; box-shadow: 10px 10px 0px var(--parchment-dark); width: 100%; max-width: 100%; }
-    .contact-details-panel { padding: 40px 20px; width: 100%; max-width: 100%; }
-    .panel-heading { font-size: 2.2rem; }
-    .channel-link { font-size: 1.15rem; }
-    .contact-visual-frame { height: 300px; width: 100%; max-width: 100%; overflow: hidden; }
-    .contact-visual-frame img { width: 100% !important; max-width: 100% !important; height: 100% !important; object-fit: cover !important; }
+    /* 🛠️ INQUIRY MOBILES PROTECTION LOCKS */
+    .contact-layout-container {
+        padding: 140px 0 40px 0; /* Headroom navbar clearance bounds */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .contact-grid-card {
+        display: flex;
+        flex-direction: column; /* Flattens side panels into one uniform stack lane */
+        width: 92vw; /* Creates flawless balanced side breathing borders on every smartphone */
+        max-width: 92vw;
+        box-shadow: 10px 10px 0px var(--parchment-dark);
+        border: 1px solid rgba(28, 49, 68, 0.05);
+        background-color: white;
+        overflow: hidden;
+    }
+    
+    .contact-details-panel {
+        padding: 35px 20px; /* Snaps text safely inside the card walls */
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .panel-heading {
+        font-size: 2.1rem;
+    }
+    
+    .channel-link {
+        font-size: 1.15rem; /* Shrinks links so phone numbers never spill or clip text lines */
+    }
+    
+    .contact-visual-frame {
+        width: 100%;
+        height: 250px; /* Perfect panoramic visual height for mobile frames */
+        overflow: hidden;
+    }
+
+    .contact-visual-frame img {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Perfect clipping boundaries */
+    }
 }
 
 @media (max-width: 768px) {
