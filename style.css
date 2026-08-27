@@ -608,17 +608,20 @@ body {
         font-size: 1.15rem; /* Shrinks links so phone numbers never spill or clip text lines */
     }
     
+    /* 🌟 THE INQUIRY IMAGE FIXED: Strips height restrictions so photo bounds remain safely self-contained */
     .contact-visual-frame {
         width: 100%;
-        height: 250px; /* Perfect panoramic visual height for mobile frames */
+        height: auto; /* Switches layout to fluid vertical scaling */
         overflow: hidden;
+        border-top: 1px dashed rgba(28, 49, 68, 0.1); /* Adds an elegant divider element track */
     }
 
     .contact-visual-frame img {
         width: 100% !important;
         max-width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important; /* Perfect clipping boundaries */
+        height: auto !important; /* Keeps image heights fluidly matched with width rules */
+        object-fit: cover !important;
+        display: block;
     }
 }
 
@@ -626,7 +629,22 @@ body {
     .nav-container { flex-direction: column; gap: 12px; padding: 20px; }
     .brand-title { font-size: 1.8rem; text-align: center; }
     .brand-tagline { text-align: center; }
-    .nav-links { gap: 20px; }
+    /* 🌟 THE HEADER LINK FIXED: Formats links into a uniform mobile grid structure */
+    .nav-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Formats menu links into two clean side-by-side rows */
+        gap: 12px 25px; /* Spaces links out beautifully on smartphone screens */
+        text-align: center;
+        width: 100%;
+        max-width: 280px; /* Keeps links neatly grouped together on mobile displays */
+        margin: 5px auto 0 auto;
+    }
+    
+    .nav-links a {
+        font-size: 0.85rem !important; /* Marginally scales link sizes down to fit small phones perfectly */
+        display: block;
+        padding: 4px 0;
+    }
     .rental-hero-stage { padding: 140px 20px 60px; height: auto; }
     .spec-container { flex-direction: column; gap: 25px; }
     .spec-divider { display: none; }
