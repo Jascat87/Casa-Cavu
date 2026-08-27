@@ -576,8 +576,9 @@ body {
     img { max-width: 100% !important; height: auto !important; }
     html, body { max-width: 100vw !important; overflow-x: hidden !important; }
     /* 🛠️ INQUIRY MOBILES PROTECTION LOCKS */
+    /* 🌟 INQUIRY FIX: Adds extra headroom so your main heading text isn't cut off */
     .contact-layout-container {
-        padding: 140px 0 40px 0; /* Headroom navbar clearance bounds */
+        padding: 220px 0 40px 0 !important; 
         width: 100%;
         display: flex;
         justify-content: center;
@@ -645,17 +646,29 @@ body {
         display: block;
         padding: 4px 0;
     }
-    .rental-hero-stage { padding: 140px 20px 60px; height: auto; }
+    /* 🌟 HERO FIX: Pushes the 3D text card completely out from under the mobile menu */
+    .rental-hero-stage { 
+        padding: 200px 20px 60px 20px !important; 
+        height: auto; 
+    }
     .spec-container { flex-direction: column; gap: 25px; }
     .spec-divider { display: none; }
     .showcase-grid { grid-template-columns: 1fr; gap: 40px; }
     .showcase-image-frame img { height: 300px; }
     .showcase-slider-frame { height: 320px; box-shadow: 10px 10px 0px var(--parchment-dark); }
     .amenities-heading { font-size: 2.1rem; }
-    .amenities-layout-container { padding-top: 140px; }
+    /* 🌟 GALLERY FIX: Safely drops your titles below the mobile navigation header */
+    .archive-gallery-container { 
+        padding-top: 220px !important; 
+        width: 100%; 
+        max-width: 100vw; 
+        overflow: hidden; 
+    }
 
-    /* ADVANCED GALLERY THEATER SMARTPHONE CONSTRAINTS FIXED */
-    .archive-gallery-container { padding-top: 140px; width: 100%; max-width: 100vw; overflow: hidden; }
+    /* 🌟 AMENITIES FIX: Keeps your property blueprint headers completely visible on load */
+    .amenities-layout-container { 
+        padding-top: 220px !important; 
+    }
     .gallery-theater-stage { 
         height: 280px !important; 
         width: calc(100vw - 40px) !important; 
