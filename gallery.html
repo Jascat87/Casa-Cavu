@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Photo Tour | Casa Cavu Vacation Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY DIRECTORY NAVBAR -->
+    <!-- UPGRADED LUXURY NAVIGATION FRAMEWORK -->
+    <nav class="rental-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-title">CASA CAVU</span>
+                <span class="brand-tagline">Tankah Bay • Riviera Maya</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">The Villa</a></li>
+                <li><a href="gallery.html" class="active-link">The Tour</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="contact.html">Inquiries</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- REAL-ESTATE MASTER THEATER ARCHITECTURE -->
+    <main class="archive-gallery-container">
+        <h2 class="gallery-heading">The Property Showcase</h2>
+        <p style="text-align: center; font-style: italic; opacity: 0.7; margin-bottom: 30px;">Explore every corner of our private Tankah Bay beach paradise.</p>
+
+        <!-- DYNAMIC ACCORDION CATEGORY FILTER TOOLBAR -->
+        <div class="vault-controls">
+            <button class="filter-btn active-tag" onclick="switchGalleryCategory('all')">Full Estate</button>
+            <button class="filter-btn" onclick="switchGalleryCategory('hero')">Highlights</button>
+            <button class="filter-btn" onclick="switchGalleryCategory('interiors')">Living Spaces</button>
+            <button class="filter-btn" onclick="switchGalleryCategory('bedrooms')">Beds & Baths</button>
+            <button class="filter-btn" onclick="switchGalleryCategory('outdoor')">Beach & Outdoor</button>
+        </div>
+
+        <!-- THE MAIN GALLERY THEATER VIEWPORT STAGE -->
+        <div class="gallery-theater-stage">
+            <div class="theater-view-window" onclick="openLightboxFromTheater()">
+                <img id="master-theater-img" src="images/hero/22.jpg" alt="Casa Cavu Estate Premium Feature Showcase">
+            </div>
+
+            <!-- THE FLOATING THEATER NAVIGATION ARROWS -->
+            <button class="theater-nav-btn prev-theater" onclick="navigateTheater(-1)" aria-label="Previous Photo">‹</button>
+            <button class="theater-nav-btn next-theater" onclick="navigateTheater(1)" aria-label="Next Photo">›</button>
+        </div>
+
+        <!-- UPGRADED THUMBNAIL CONTAINER SYSTEM WITH ARROWS -->
+        <div class="ribbon-carousel-wrapper">
+            <!-- Left Scroll Arrow Button -->
+            <button class="ribbon-arrow-btn prev-ribbon" onclick="scrollRibbon(-1)" aria-label="Scroll Ribbon Left">‹</button>
+            
+            <!-- The Internal Scrolling Track -->
+            <div id="thumbnail-ribbon-track" class="thumbnail-ribbon">
+                <!-- JavaScript will dynamically construct your small photo boxes right here! -->
+            </div>
+            
+            <!-- Right Scroll Arrow Button -->
+            <button class="ribbon-arrow-btn next-ribbon" onclick="scrollRibbon(1)" aria-label="Scroll Ribbon Right">›</button>
+        </div>
+    </main>
+
+    <!-- HIDDEN FULL-SCREEN LIGHTBOX MODAL OVERLAY -->
+    <div id="fairy-lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-frame-wrapper" style="position: relative; display: inline-block;">
+            <img class="lightbox-content" id="lightbox-zoom-target" alt="Enlarged Villa Showcase View">
+        </div>
+    </div>
+
+    <!-- GLOBAL BASELINE FOOTER -->
+    <footer class="rental-footer">
+        <p>Location: Tankah Tres (Tankah Bay), Quintana Roo, Mexico</p>
+        <p>© 2026 Casa Cavu. Handcrafted by Jeremiah Schultz. All Rights Reserved.</p>
+    </footer>
+
+    <!-- ARCHIVE MASTER CONTROLLER ENGINE -->
+    <!-- ARCHIVE MASTER CONTROLLER ENGINE (KEYBOARD & AUTO-SCROLL EXTENSION) -->
+    <script>
+        // ✦ THE MASTER PHOTO DATA STORAGE VAULT ✦
+        const propertyImages = [
+            { src: 'images/hero/22.jpg', category: 'hero', alt: 'Oceanside Pool Deck View' },
+            { src: 'images/hero/18.jpg', category: 'hero', alt: 'Tropical Villa Front Elevation ' },
+            { src: 'images/hero/7.jpg', category: 'hero', alt: 'Widescreen Sandy Beachfront Horizon' },
+            { src: 'images/hero/1.jpg', category: 'hero', alt: 'Oceanside Pool Deck View' },
+            { src: 'images/hero/4.jpg', category: 'hero', alt: 'Tropical Villa Front Elevation ' },
+            { src: 'images/hero/6.jpg', category: 'hero', alt: 'Widescreen Sandy Beachfront Horizon' },
+            { src: 'images/hero/8.jpg', category: 'hero', alt: 'Oceanside Pool Deck View' },
+            { src: 'images/hero/9.jpg', category: 'hero', alt: 'Tropical Villa Front Elevation ' },
+            { src: 'images/hero/10.jpg', category: 'hero', alt: 'Widescreen Sandy Beachfront Horizon' },
+            { src: 'images/hero/13.jpg', category: 'hero', alt: 'Oceanside Pool Deck View' },
+            { src: 'images/hero/16.jpg', category: 'hero', alt: 'Tropical Villa Front Elevation ' },
+            { src: 'images/hero/17.jpg', category: 'hero', alt: 'Widescreen Sandy Beachfront Horizon' },
+            { src: 'images/hero/19.jpg', category: 'hero', alt: 'Oceanside Pool Deck View' },
+            { src: 'images/hero/20.jpg', category: 'hero', alt: 'Tropical Villa Front Elevation ' },
+            { src: 'images/hero/21.jpg', category: 'hero', alt: 'Widescreen Sandy Beachfront Horizon' },
+            { src: 'images/hero/23.jpg', category: 'hero', alt: 'Oceanside Pool Deck View' },
+            { src: 'images/hero/24.jpg', category: 'hero', alt: 'Tropical Villa Front Elevation ' },
+            
+            { src: 'images/interiors/15.jpg', category: 'interiors', alt: 'Ocean View Living Lounge' },
+            { src: 'images/interiors/11.jpg', category: 'interiors', alt: 'Island Kitchen Breakfast Bar' },
+            { src: 'images/interiors/14.jpg', category: 'interiors', alt: 'Bright Casual Dining Room' },
+            { src: 'images/interiors/10.jpg', category: 'interiors', alt: 'Ocean View Living Lounge' },
+            { src: 'images/interiors/13.jpg', category: 'interiors', alt: 'Island Kitchen Breakfast Bar' },
+            { src: 'images/interiors/12.jpg', category: 'interiors', alt: 'Bright Casual Dining Room' },
+            { src: 'images/interiors/16.jpg', category: 'interiors', alt: 'Ocean View Living Lounge' },
+            { src: 'images/interiors/1.jpg', category: 'interiors', alt: 'Island Kitchen Breakfast Bar' },
+            { src: 'images/interiors/8.jpg', category: 'interiors', alt: 'Bright Casual Dining Room' },
+            { src: 'images/interiors/2.jpg', category: 'interiors', alt: 'Ocean View Living Lounge' },
+            { src: 'images/interiors/7.jpg', category: 'interiors', alt: 'Island Kitchen Breakfast Bar' },
+            
+            { src: 'images/bedrooms/3.jpg', category: 'bedrooms', alt: 'Lower Level Double Bed Guest Room' },
+            { src: 'images/bedrooms/6.jpg', category: 'bedrooms', alt: 'Lower Level Double Bed Guest Room' },
+            { src: 'images/bedrooms/11.jpg', category: 'bedrooms', alt: 'Lower Level Double Bed Guest Room' },
+            { src: 'images/bedrooms/9.jpg', category: 'bedrooms', alt: 'Master King Suite with Sea Terrace' },
+            { src: 'images/bedrooms/13.jpg', category: 'bedrooms', alt: 'Master King Suite with Sea Terrace' },
+            { src: 'images/bedrooms/7.jpg', category: 'bedrooms', alt: 'Master King Suite with Sea Terrace' },
+            { src: 'images/bedrooms/8.jpg', category: 'bedrooms', alt: 'Master King Suite with Sea Terrace' },
+            { src: 'images/bedrooms/5.jpg', category: 'bedrooms', alt: 'Upper Level Twin Bed Guest Room' },
+            { src: 'images/bedrooms/12.jpg', category: 'bedrooms', alt: 'Upper Level Twin Bed Guest Room' },
+            { src: 'images/bedrooms/1.jpg', category: 'bedrooms', alt: 'Bathrooms' },
+            { src: 'images/bedrooms/2.jpg', category: 'bedrooms', alt: 'Bathrooms' },
+            
+            { src: 'images/outdoor/2.jpg', category: 'outdoor', alt: 'Private Beachfront Swimming Pool' },
+            { src: 'images/outdoor/3.jpg', category: 'outdoor', alt: 'Oceanfront Pool Deck Lounge Area' },
+            { src: 'images/outdoor/1.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/4.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/7.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/8.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/9.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/10.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/11.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/12.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/13.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/14.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/15.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/16.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/17.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/18.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/19.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/20.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/21.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/22.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/23.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/24.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/25.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/26.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/27.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/28.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/30.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/31.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/32.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/33.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/34.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/35.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/36.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/37.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/38.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/40.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/42.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/44.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/46.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/49.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/51.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/53.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' },
+            { src: 'images/outdoor/58.jpg', category: 'outdoor', alt: 'Complimentary Watersports Gear on Shore' },
+            { src: 'images/outdoor/60.jpg', category: 'outdoor', alt: 'Panoramic Rooftop Observation Deck' }
+
+        ];
+
+        // GLOBAL APPLICATION INSTANCE POINTERS
+        let filteredList = [...propertyImages]; 
+        let theaterIndex = 0; 
+
+        // INITIAL ENGINE IGNITION ON PAGE LOAD
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeGallery();
+        });
+
+        function initializeGallery() {
+            filteredList = [...propertyImages];
+            theaterIndex = 0;
+            renderThumbnailRibbon();
+            updateTheaterDisplay();
+        }
+
+        // CATEGORY SWITCHER LOGIC
+        function switchGalleryCategory(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active-tag'));
+            
+            if (event && event.target) {
+                event.target.classList.add('active-tag');
+            }
+
+            if (category === 'all') {
+                filteredList = [...propertyImages];
+            } else {
+                filteredList = propertyImages.filter(img => img.category === category);
+            }
+
+            theaterIndex = 0;
+            renderThumbnailRibbon();
+            updateTheaterDisplay();
+        }
+
+        // DYNAMIC THUMBNAIL CONSTRUCTOR STRIP
+        function renderThumbnailRibbon() {
+            const ribbon = document.getElementById('thumbnail-ribbon-track');
+            ribbon.innerHTML = ''; 
+
+            filteredList.forEach((photo, index) => {
+                const tile = document.createElement('div');
+                tile.className = 'thumb-tile';
+                if (index === theaterIndex) tile.classList.add('active-thumb');
+                
+                tile.innerHTML = `<img src="${photo.src}" alt="${photo.alt}">`;
+                
+                tile.onclick = () => {
+                    theaterIndex = index;
+                    updateTheaterDisplay();
+                };
+                
+                ribbon.appendChild(tile);
+            });
+        }
+
+        // THEATER STATE UPDATE ENGINE
+        function updateTheaterDisplay() {
+            const masterImg = document.getElementById('master-theater-img');
+            const tiles = document.querySelectorAll('.thumb-tile');
+
+            if (filteredList.length > 0) {
+                masterImg.src = filteredList[theaterIndex].src;
+                masterImg.alt = filteredList[theaterIndex].alt;
+
+                tiles.forEach(tile => tile.classList.remove('active-thumb'));
+                if (tiles[theaterIndex]) {
+                    tiles[theaterIndex].classList.add('active-thumb');
+                    // 🌟 NEW AUTO-SCROLL: Smoothly glides the ribbon left or right to keep active thumbnails centered
+                    syncRibbonScroll(tiles[theaterIndex]);
+                }
+            }
+        }
+
+        // AUTO-SCROLL SYNC ALIGNMENT FUNCTION
+        function syncRibbonScroll(activeTileElement) {
+            if (activeTileElement) {
+                activeTileElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',   // Prevents your whole browser window from jumping up or down
+                    inline: 'center'    // Centers the active photo smoothly inside the ribbon track lane
+                });
+            }
+        }
+
+        // THEATER ARROW ITERATION CONTROLLERS
+        function navigateTheater(direction) {
+            theaterIndex += direction;
+            
+            if (theaterIndex >= filteredList.length) { theaterIndex = 0; }
+            else if (theaterIndex < 0) { theaterIndex = filteredList.length - 1; }
+
+            updateTheaterDisplay();
+        }
+
+        // THUMBNAIL RIBBON SIDE ARROWS BUTTON SCROLL
+        function scrollRibbon(direction) {
+            const ribbon = document.getElementById('thumbnail-ribbon-track');
+            const scrollAmount = 248 * direction; 
+            ribbon.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+
+        // 🌟 NEW KEYBOARD ARROW CONTROLLER EVENT LISTENER
+        window.addEventListener('keydown', (e) => {
+            // Check if the hidden fullscreen lightbox is currently open
+            const lightbox = document.getElementById('fairy-lightbox');
+            const isLightboxActive = lightbox.classList.contains('active-view');
+
+            if (e.key === 'ArrowRight') {
+                navigateTheater(1);
+            } else if (e.key === 'ArrowLeft') {
+                navigateTheater(-1);
+            } else if (e.key === 'Escape' && isLightboxActive) {
+                closeLightbox(); // Lets clients close the full screen image tap window with the Escape key!
+            }
+        });
+
+        // FULL SCREEN POPUP LIGHTBOX OVERLAYS
+        function openLightboxFromTheater() {
+            if (filteredList.length > 0) {
+                openLightbox(filteredList[theaterIndex].src);
+            }
+        }
+
+        function openLightbox(imagePath) {
+            const overlay = document.getElementById('fairy-lightbox');
+            const zoomImg = document.getElementById('lightbox-zoom-target');
+            zoomImg.src = imagePath;
+            overlay.classList.add('active-view');
+        }
+
+        // Keydown global captures require passing string arguments into structural close layers
+        function closeLightbox() {
+            const overlay = document.getElementById('fairy-lightbox');
+            overlay.classList.remove('active-view');
+        }
+    </script>
+</body>
+</html>

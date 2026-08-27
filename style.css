@@ -1,0 +1,1095 @@
+/* ==========================================================================
+   CASA CAVU ARCHITECTURAL MATRIX STYLESHEET
+   ========================================================================== */
+/* ==========================================================================
+   CASA CAVU ADVANCED DESIGN SYSTEM SPECIFICATIONS
+   ========================================================================== */
+/* Premium Editorial Google Font Import */
+@import url('https://googleapis.com');
+
+:root {
+    --hacienda-white: #FBF9F6;
+    --terracotta: #D96B43;
+    --deep-ocean: #1C3144;
+    --parchment-dark: #F5EFEB;
+    
+    /* THE LUXURY TYPOGRAPHY UPGRADE */
+    --font-header: 'Cormorant Garamond', 'Georgia', serif;
+    --font-body: 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--hacienda-white);
+    color: var(--deep-ocean);
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* WIDESCREEN ASYMMETRIC NAVBAR ENGINE */
+.rental-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(251, 249, 246, 0.92);
+    border-bottom: 1px solid rgba(28, 49, 68, 0.05);
+    z-index: 1000;
+    backdrop-filter: blur(15px); /* Soft glass frost effect over background images */
+    transition: all 0.4s ease;
+}
+
+.nav-container {
+    width: 100%; /* Opens the bounding tracks completely to screen bounds */
+    max-width: 1800px; /* Safe upper cap for massive monitors */
+    margin: 0 auto;
+    padding: 25px 60px; /* Pushes content far left and far right with generous breathing room */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* THE UNDER-SLUNG BRAND LOGO ARCHITECTURE */
+.nav-brand {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.brand-title {
+    font-family: var(--font-header);
+    font-size: 2.1rem; /* Visually bold, elegant serif signature */
+    font-weight: 700;
+    color: var(--deep-ocean);
+    letter-spacing: 3px; /* Clean tracking expansion */
+    line-height: 1;
+}
+
+.brand-tagline {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 4px; /* Extreme letter spacing for that high-fashion look */
+    color: var(--terracotta);
+    font-weight: bold;
+    padding-left: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 45px; /* Spaces out link pairs neatly */
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--deep-ocean);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Clean editorial underline transition logic */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--terracotta);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after, .nav-links a.active-link::after {
+    width: 100%;
+}
+
+.nav-links a:hover, .nav-links a.active-link {
+    color: var(--terracotta);
+    opacity: 1;
+}
+
+/* Update hero tracking room to handle our expanded navbar height */
+/* ==========================================================================
+   THE IMMERSIVE 3D BALANCED HERO FRAMEWORK
+   ========================================================================== */
+/* ==========================================================================
+   THE IMMERSIVE STAGGERED HERO STAGE
+   ========================================================================== */
+.rental-hero-stage {
+    min-height: 95vh;
+    padding: 180px 40px 100px 40px; /* Enhanced vertical clearance for staggered math */
+    background-color: var(--hacienda-white);
+    
+    /* 🏖️ UPDATED: Utilizing Hero Image 7 as your beautiful immersive beach backdrop */
+    background: linear-gradient(rgba(251, 249, 246, 0.8), rgba(251, 249, 246, 0.85)), url('images/hero/7.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(28, 49, 68, 0.05);
+}
+
+.hero-balanced-container {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    
+    /* 📐 ASYMMETRIC WEIGHT: Left text card owns 58% width, right image owns 42% */
+    grid-template-columns: 58fr 42fr; 
+    
+    /* NEW: Expanded separation track opens up a pristine structural gap channel */
+    gap: 80px; 
+    
+    align-items: center;
+}
+
+/* THE SIGNATURE POP-UP CARD (STAGGERED HIGHER) */
+.hero-popup-card {
+    background-color: var(--hacienda-white);
+    padding: 60px; /* Expanded padding makes the text layout feel larger and more premium */
+    border: 1px solid rgba(28, 49, 68, 0.05);
+    box-shadow: 25px 25px 0px rgba(217, 107, 67, 0.15);
+    
+    /* 🚀 STAGGER LOCK: Marginally shifts the text panel UPWARD */
+    transform: translateY(-20px); 
+}
+
+.hero-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--terracotta);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero-title {
+    font-family: var(--font-header);
+    font-size: 2.8rem;
+    line-height: 1.2;
+    color: var(--deep-ocean);
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    font-size: 1.15rem;
+    opacity: 0.85;
+    margin-bottom: 35px;
+}
+
+/* THE COMPACT IMAGE CANVAS (STAGGERED LOWER) */
+.hero-canvas-frame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+    /* ⚓ STAGGER LOCK: Marginally shifts the photo container DOWNWARD */
+    transform: translateY(20px); 
+}
+
+.hero-canvas-frame img {
+    width: 100%;
+    
+    /* 📐 SCALED DOWN: Sized down to 420px tall so it is smaller than the large text card */
+    height: 420px; 
+    
+    object-fit: cover;
+    border: 1px solid rgba(28, 49, 68, 0.05);
+    box-shadow: 25px 25px 0px var(--parchment-dark); 
+}
+
+/* ==========================================================================
+   DYNAMIC MOBILE COLLAPSE OVERRIDES (Removes staggering on phone screens)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-balanced-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    /* Safe reset removes vertical shift so blocks stack cleanly on phones */
+    .hero-popup-card, .hero-canvas-frame {
+        transform: translateY(0); 
+    }
+    
+    .hero-popup-card {
+        padding: 35px 25px;
+        box-shadow: 15px 15px 0px rgba(217, 107, 67, 0.15);
+    }
+    
+    .hero-title { font-size: 2.2rem; }
+    
+    .hero-canvas-frame img {
+        height: 350px;
+        box-shadow: 15px 15px 0px var(--parchment-dark);
+    }
+}
+
+/* ==========================================================================
+   DYNAMIC COMPACT PHONE RESPONSIBLE REFLOW (1024px and Below)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-balanced-container {
+        grid-template-columns: 1fr; /* Flattens down to 1 track stack layer */
+        gap: 50px;
+    }
+    
+    .hero-popup-card {
+        padding: 35px 25px;
+        box-shadow: 15px 15px 0px rgba(217, 107, 67, 0.15);
+    }
+    
+    .hero-title { font-size: 2.2rem; }
+    
+    .hero-canvas-frame img {
+        height: 350px; /* Comfortably limits the portrait size on phone glass plates */
+        box-shadow: 15px 15px 0px var(--parchment-dark);
+    }
+}
+
+/* ACTIONS NAVIGATION LINK UTILITIES */
+.hero-action-row { display: flex; gap: 20px; }
+.cta-primary-btn {
+    text-decoration: none;
+    background-color: var(--deep-ocean);
+    color: var(--hacienda-white);
+    padding: 15px 30px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.cta-primary-btn:hover { background-color: var(--terracotta); }
+.cta-secondary-btn {
+    text-decoration: none;
+    border: 1px solid var(--deep-ocean);
+    color: var(--deep-ocean);
+    padding: 15px 30px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.cta-secondary-btn:hover { background-color: rgba(28, 49, 68, 0.05); }
+
+/* MEASURE CAPACITIES PARAMETERS CARD */
+.property-spec-bar { background-color: var(--parchment-dark); padding: 35px 20px; }
+.spec-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.spec-item { text-align: center; flex: 1; }
+.spec-number { display: block; font-family: var(--font-header); font-size: 2.6rem; color: var(--terracotta); font-weight: bold; line-height: 1; margin-bottom: 5px; }
+.spec-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
+.spec-divider { width: 1px; height: 40px; background-color: rgba(28, 49, 68, 0.15); }
+
+/* MAIN SPLIT-SCREEN INFORMATION GRIDS */
+.showcase-container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+.showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.showcase-text h2 { font-family: var(--font-header); font-size: 2.4rem; color: var(--deep-ocean); margin-bottom: 15px; }
+.accent-line { width: 60px; height: 3px; background-color: var(--terracotta); margin-bottom: 25px; }
+.showcase-text p { font-size: 1.15rem; opacity: 0.85; margin-bottom: 20px; text-align: justify; }
+
+.showcase-image-frame img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    box-shadow: 15px 15px 0px var(--parchment-dark);
+    border: 1px solid rgba(28, 49, 68, 0.05);
+}
+
+/* MOORING BOUNDS STABLE FOOTER TRACK */
+.rental-footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--deep-ocean);
+    color: var(--hacienda-white);
+    font-size: 0.95rem;
+    margin-top: auto;
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.rental-footer p { opacity: 0.7; }
+
+/* RESPONSIVE LAYOUT CONSTRAINTS (768px and Below) */
+@media (max-width: 768px) {
+    .nav-container { flex-direction: column; gap: 12px; }
+    .nav-links { gap: 20px; }
+    .rental-hero { padding: 0 20px; height: auto; padding-top: 140px; padding-bottom: 60px; }
+    .hero-overlay-card { padding: 30px 20px; box-shadow: 15px 15px 0px rgba(217, 107, 67, 0.15); }
+    .hero-title { font-size: 2.2rem; }
+    .hero-action-row { flex-direction: column; gap: 12px; }
+    .spec-container { flex-direction: column; gap: 25px; }
+    .spec-divider { display: none; }
+    .showcase-grid { grid-template-columns: 1fr; gap: 40px; }
+    .showcase-image-frame img { height: 300px; }
+}
+
+
+
+
+/* ==========================================================================
+   DIRECT INQUIRY COMPONENT INTERFACE
+   ========================================================================== */
+.contact-layout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 160px 20px 80px; /* Perfect clearance for our sticky navbar navigation */
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.contact-grid-card {
+    display: grid;
+    grid-template-columns: 55fr 45fr; /* 55% details content, 45% luxury visual image */
+    background-color: white;
+    border: 1px solid rgba(28, 49, 68, 0.05);
+    box-shadow: 20px 20px 0px var(--parchment-dark);
+    width: 100%;
+}
+
+/* LEFT PANEL TYPOGRAPHY & CHANNELS */
+.contact-details-panel {
+    padding: 60px;
+}
+
+.panel-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--terracotta);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.panel-heading {
+    font-family: var(--font-header);
+    font-size: 2.6rem;
+    color: var(--deep-ocean);
+    margin-bottom: 15px;
+}
+
+.panel-intro {
+    font-size: 1.15rem;
+    opacity: 0.85;
+    margin-bottom: 35px;
+    text-align: justify;
+}
+
+/* COMMUNICATION CHANNEL ROWS */
+.direct-channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.channel-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--hacienda-white);
+    padding: 15px 20px;
+    border-left: 4px solid var(--terracotta);
+}
+
+.channel-icon {
+    font-size: 1.6rem;
+}
+
+.channel-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+}
+
+.channel-link {
+    font-family: var(--font-header);
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--deep-ocean);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.channel-link:hover {
+    color: var(--terracotta);
+}
+
+.seasonal-notice {
+    font-size: 0.95rem;
+    opacity: 0.75;
+    border-top: 1px dashed rgba(28, 49, 68, 0.15);
+    padding-top: 20px;
+}
+
+/* RIGHT PANEL IMAGE COMPONENT */
+.contact-visual-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops the exterior property shot perfectly into a tall canvas aspect */
+    display: block;
+}
+
+/* ==========================================================================
+   CONTACT CARD RESPONSIVE COLLAPSE OVERRIDES
+   ========================================================================== */
+@media (max-width: 900px) {
+    .contact-layout-container {
+        padding-top: 140px;
+    }
+    
+    .contact-grid-card {
+        grid-template-columns: 1fr; /* Snaps the split screens down into 1 vertical lane on tablet/phone */
+        box-shadow: 10px 10px 0px var(--parchment-dark);
+    }
+    
+    .contact-details-panel {
+        padding: 30px 20px;
+    }
+    
+    .panel-heading {
+        font-size: 2.2rem;
+    }
+    
+    .channel-link {
+        font-size: 1.15rem; /* Scales phone numbers down slightly so they don't break lines on small screens */
+    }
+    
+    .contact-visual-frame {
+        height: 300px; /* Limits photo frame bounds on mobile devices */
+    }
+}
+
+
+
+
+/* ==========================================================================
+   THE LUXURY REAL-ESTATE GALLERY THEATER SYSTEM (REFINED)
+   ========================================================================= */
+
+
+.archive-gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    /* 🌟 FIX: Hard-locks alignment centering and brings text closer to your fixed menu links */
+    padding-top: 150px;
+    padding-bottom: 60px;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+}
+
+
+/* 🌟 THE RESTORED PRESETS: Large, stylized editorial pill buttons */
+.vault-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 45px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--deep-ocean);
+    color: var(--deep-ocean);
+    padding: 12px 26px; /* Expanded padding creates a large, premium tap target */
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 30px; /* Locks in the sleek rounded pill style */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active-tag {
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--hacienda-white);
+    box-shadow: 0 5px 15px rgba(217, 107, 67, 0.25);
+}
+
+/* HARD-LOCKED MASTER THEATER WINDOW COMPONENT */
+.gallery-theater-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    background-color: var(--parchment-dark);
+    border: 1px solid rgba(28, 49, 68, 0.05);
+    box-shadow: 20px 20px 0px var(--parchment-dark);
+    height: 560px; 
+}
+
+.theater-view-window {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.theater-view-window img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.theater-view-window:hover img {
+    transform: scale(1.02);
+}
+
+/* THE FIXED THEATER NAVIGATION ARROWS */
+.theater-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(251, 249, 246, 0.85);
+    border: 1px solid rgba(28, 49, 68, 0.1);
+    color: var(--deep-ocean);
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    line-height: 45px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    user-select: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-theater-stage:hover .theater-nav-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+.theater-nav-btn:hover {
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--hacienda-white);
+    box-shadow: 0 4px 12px rgba(217, 107, 67, 0.3);
+}
+
+.prev-theater { left: 20px; }
+.next-theater { right: 20px; }
+
+/* 🌟 NEW: THE OUTER RIBBON CAROUSEL WRAPPER PANEL */
+.ribbon-carousel-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 45px; 
+    
+    /* 🌟 FIX 3: Creates a firm structural cushion that blocks the footer from ever creeping up or overlapping your text */
+    margin-bottom: 60px; 
+}
+
+/* HORIZONTAL RIBBON TRACK CONSTRAINTS */
+.thumbnail-ribbon {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 0;
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    scroll-behavior: smooth;
+}
+
+/* Hidden scrollbar styling across navigation panes */
+.thumbnail-ribbon::-webkit-scrollbar { height: 4px; }
+.thumbnail-ribbon::-webkit-scrollbar-track { background: transparent; }
+.thumbnail-ribbon::-webkit-scrollbar-thumb { background: rgba(217, 107, 67, 0.15); border-radius: 10px; }
+
+/* 🌟 NEW: FLOATING RIBBON TRACK NAVIGATION ARROWS */
+.ribbon-arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--hacienda-white);
+    border: 1px solid rgba(28, 49, 68, 0.1);
+    color: var(--deep-ocean);
+    width: 32px;
+    height: 32px;
+    font-size: 1.4rem;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 20;
+    user-select: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.ribbon-arrow-btn:hover {
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--hacienda-white);
+}
+
+.prev-ribbon { left: 0; }
+.next-ribbon { right: 0; }
+
+.thumb-tile {
+    flex: 0 0 112px; 
+    height: 75px; 
+    border: 2px solid transparent;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: var(--parchment-dark);
+    transition: all 0.3s ease;
+    opacity: 0.5;
+}
+
+.thumb-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumb-tile:hover, .thumb-tile.active-thumb {
+    opacity: 1;
+    border-color: var(--terracotta);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* THEATER RESPONSIVE TUNING */
+@media (max-width: 768px) {
+    .gallery-theater-stage { height: 380px; box-shadow: 10px 10px 0px var(--parchment-dark); }
+    .thumb-tile { flex: 0 0 85px; height: 60px; }
+    .ribbon-carousel-wrapper { padding: 0 35px; }
+}
+
+/* ==========================================================================
+   FULL-SCREEN LIGHTBOX OVERLAY GRAPHICS VIEW
+   ========================================================================== */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 49, 68, 0.95); /* Deep ocean backing tint */
+    z-index: 5000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.lightbox-overlay.active-view { display: flex; }
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 3rem;
+    color: var(--hacienda-white);
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+.lightbox-close:hover { color: var(--terracotta); }
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 3px solid var(--hacienda-white);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* ==========================================================================
+   GALLERY MONITOR BREAKPOINTS BREAKDOWN
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .archive-item { flex: 0 0 calc(33.33% - 17px); } /* 3 Columns on small monitors or tablets */
+}
+@media (max-width: 768px) {
+    .archive-item { flex: 0 0 calc(50% - 13px); } /* 2 Columns on large mobile windows */
+    .gallery-heading { font-size: 2.1rem; }
+}
+@media (max-width: 480px) {
+    .archive-item { flex: 0 0 100%; } /* 1 Safe full width card block column track on phone frames */
+    .vault-controls { gap: 10px; }
+    .filter-btn { padding: 8px 16px; font-size: 0.85rem; }
+}
+
+
+
+
+/* ==========================================================================
+   AMENITIES & TANKAH NEIGHBORHOOD SYSTEM LAYOUT
+   ========================================================================= */
+.amenities-layout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 160px 20px 80px 20px; /* Safefixed navbar header clearance bounds */
+    flex: 1 0 auto;
+    text-align: center;
+}
+
+.amenities-heading {
+    font-family: var(--font-header);
+    font-size: 2.6rem;
+    color: var(--deep-ocean);
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-style: italic;
+    opacity: 0.7;
+    margin-bottom: 50px;
+}
+
+/* SECTION A: UPPER PROPERTY BLUEPRINT GRIDS (UPGRADED) */
+.amenities-grid-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    margin-bottom: 50px;
+    align-items: stretch; /* Forces all cards to stretch to the exact same uniform height */
+}
+
+.amenity-card {
+    background-color: white;
+    border: 1px solid rgba(28, 49, 68, 0.05);
+    box-shadow: 15px 15px 0px var(--parchment-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Stacks text content neatly underneath the images */
+    transition: transform 0.3s ease;
+    text-align: left;
+}
+
+.amenity-card:hover {
+    transform: translateY(-5px);
+}
+
+.amenity-image-box {
+    width: 100%;
+    height: 220px; /* Perfectly links size footprints with your lower neighborhood boxes */
+    overflow: hidden;
+    border-bottom: 1px solid rgba(28, 49, 68, 0.03);
+}
+
+.amenity-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Clips and centers your interior captures cleanly */
+    display: block;
+}
+
+.amenity-content-box {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.amenity-card-header {
+    border-bottom: 2px solid var(--parchment-dark);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.amenity-card h3 {
+    font-family: var(--font-header);
+    font-size: 1.6rem;
+    color: var(--deep-ocean);
+}
+
+.amenity-details-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.amenity-details-list li {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    position: relative;
+    padding-left: 20px;
+    line-height: 1.5;
+}
+
+.amenity-details-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--terracotta);
+    font-size: 0.8rem;
+}
+
+.amenity-details-list strong {
+    color: var(--deep-ocean);
+}
+
+/* ==========================================================================
+   🌴 SECTION B: TANKAH NEIGHBORHOOD ADVENTURE CARDS
+   ========================================================================= */
+.neighborhood-grid-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 clean editorial cards spanning desktop monitors */
+    gap: 35px;
+    text-align: left;
+}
+
+.experience-card {
+    background-color: white;
+    border: 1px solid rgba(28, 49, 68, 0.05);
+    box-shadow: 15px 15px 0px var(--parchment-dark);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-5px);
+}
+
+.experience-image-box {
+    width: 100%;
+    height: 220px; /* Hard-locked image viewport height creates beautiful symmetrical grids */
+    overflow: hidden;
+}
+
+.experience-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* CONTENT CONTAINER INTERNALS */
+.experience-content-box {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.experience-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--terracotta);
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.experience-content-box h3 {
+    font-family: var(--font-header);
+    font-size: 1.6rem;
+    color: var(--deep-ocean);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.experience-content-box p {
+    font-size: 1.05rem;
+    opacity: 0.8;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   AMENITIES WIDESCREEN RESPONSIVE RESPONSES
+   ========================================================================= */
+@media (max-width: 1024px) {
+    .amenities-grid-matrix, .neighborhood-grid-matrix {
+        grid-template-columns: 1fr; /* Snaps both sections into clean, full-width vertical stacks on mobile/tablet */
+        gap: 40px;
+    }
+    .amenity-card, .experience-card { box-shadow: 10px 10px 0px var(--parchment-dark); }
+}
+@media (max-width: 768px) {
+    .amenities-heading { font-size: 2.1rem; }
+    .amenities-layout-container { padding-top: 140px; }
+}
+
+/* ==========================================================================
+   AMENITIES ADAPTIVE SCREEN BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .amenities-grid-matrix {
+        grid-template-columns: 1fr; /* Snaps the 3 horizontal cards into 1 vertical column stack on tablets and phones */
+        gap: 40px;
+    }
+    
+    .amenity-card {
+        box-shadow: 10px 10px 0px var(--parchment-dark);
+    }
+}
+
+@media (max-width: 768px) {
+    .amenities-heading {
+        font-size: 2.1rem;
+    }
+}
+
+
+
+
+/* ==========================================================================
+   INTERACTIVE RE-FLOWING HOME CAROUSEL COMPONENT
+   ========================================================================== */
+.showcase-slider-frame {
+    position: relative;
+    width: 100%;
+    height: 480px; /* Locks your carousel height dimension to stay level with the text blocks */
+    box-shadow: 15px 15px 0px var(--parchment-dark);
+    border: 1px solid rgba(28, 49, 68, 0.05);
+    background-color: var(--parchment-dark);
+    overflow: hidden;
+}
+
+/* Individual Slide Nodes State Controllers */
+.rental-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    cursor: zoom-in;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.5s ease;
+}
+
+.rental-slide.active-slide {
+    opacity: 1;
+    visibility: visible;
+}
+
+.rental-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* FLOATING NAVIGATION GLASS BUTTONS */
+/* FLOATING NAVIGATION GLASS BUTTONS (UPGRADED WITH HOVER FADE MECHANICS) */
+.slide-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(251, 249, 246, 0.85); 
+    border: 1px solid rgba(28, 49, 68, 0.1);
+    color: var(--deep-ocean);
+    width: 45px;
+    height: 45px;
+    font-size: 1.8rem;
+    font-family: Arial, sans-serif;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    user-select: none;
+    
+    /* 🌟 THE VISIBILITY LOCK: Completely invisible by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* THE HOVER TRIGGER ACCORDION ENGINE: Reveals arrows smoothly upon hover entry */
+.showcase-slider-frame:hover .slide-nav-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide-nav-btn:hover {
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
+    color: var(--hacienda-white);
+    box-shadow: 0 4px 12px rgba(217, 107, 67, 0.3);
+}
+
+.prev-arrow { left: 20px; }
+.next-arrow { right: 20px; }
+
+/* LOWER DOT TRACK CHANNELS INDICATORS (UPGRADED WITH HOVER FADE) */
+.slider-dots-row {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    
+    /* 🌟 THE VISIBILITY LOCK: Invisible by default */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* THE HOVER TRIGGER: Reveals both dots and arrows simultaneously */
+.showcase-slider-frame:hover .slider-dots-row {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slider-dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(251, 249, 246, 0.5);
+    border: 1px solid rgba(28, 49, 68, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active-dot, .slider-dot:hover {
+    background-color: var(--terracotta);
+    width: 20px; /* Turns into a sleek elongated capsule when activated */
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .showcase-slider-frame { height: 320px; box-shadow: 10px 10px 0px var(--parchment-dark); }
+}

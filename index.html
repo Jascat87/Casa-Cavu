@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Cavu | Beachfront Vacation Rental Tankah Bay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY DIRECTORY NAVBAR -->
+    <!-- UPGRADED LUXURY NAVIGATION FRAMEWORK -->
+    <nav class="rental-nav">
+        <div class="nav-container">
+            <a href="gallery.html" class="nav-brand">
+                <span class="brand-title">CASA CAVU</span>
+                <span class="brand-tagline">Tankah Bay • Riviera Maya</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active-link">The Villa</a></li>
+                <li><a href="gallery.html">The Tour</a></li>
+                <li><a href="amenities.html">Amenities</a></li>
+                <li><a href="contact.html">Inquiries</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PREMIUM HERO HERO HEADER -->
+    <!-- IMMERSIVE BALANCED HERO CONTAINER -->
+    <header class="rental-hero-stage">
+        <div class="hero-balanced-container">
+            
+            <!-- THE SIGNATURE 3D POP-UP CARD -->
+            <div class="hero-popup-card">
+                <span class="hero-subtitle">Tankah Tres, Riviera Maya</span>
+                <h1 class="hero-title">Your Private Caribbean Sanctuary</h1>
+                <p class="hero-text">Escape the crowds at a breathtaking two-level beach house on the white sands of Tankah Bay. Featuring a private oceanside pool, coral reef snorkeling, and luxurious tropical living just 10 minutes north of Tulum.</p>
+                <div class="hero-action-row">
+                    <a href="contact.html" class="cta-primary-btn">Book Directly with Owner</a>
+                    <a href="gallery.html" class="cta-secondary-btn">View Photo Gallery</a>
+                </div>
+            </div>
+            
+            <!-- THE PERFECTLY PROPORTIONAL PICTURE CANVAS (UPGRADED WITH LIVE ZOOM TRIGGER) -->
+            <div class="hero-canvas-frame" onclick="openLightbox('images/hero/18.jpg', this)" style="cursor: zoom-in;">
+                <img src="images/hero/18.jpg" alt="Casa Cavu Front Elevation and Tropical Flora Setup">
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ACCESSIBILITY CAPACITIES BAR -->
+    <section class="property-spec-bar">
+        <div class="spec-container">
+            <div class="spec-item">
+                <span class="spec-number">3 BR</span>
+                <span class="spec-label">Private Bedrooms</span>
+            </div>
+            <div class="spec-divider"></div>
+            <div class="spec-item">
+                <span class="spec-number">2 BA</span>
+                <span class="spec-label">Full Bathrooms</span>
+            </div>
+            <div class="spec-divider"></div>
+            <div class="spec-item">
+                <span class="spec-number">7</span>
+                <span class="spec-label">Max Guests Welcome</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPERTY DEEP-DIVE OVERVIEW CONTAINER -->
+    <main class="showcase-container">
+        <div class="showcase-grid">
+            <div class="showcase-text">
+                <h2>Oceanside Serenity Awaits</h2>
+                <div class="accent-line"></div>
+                <p>Casa Cavu features an open-concept floor plan designed to frame sweeping views of the turquoise sea. The bright main level blends a spacious living lounge with a fully equipped chef's kitchen and breakfast bar, opening directly onto a private beachfront swimming pool via floor-to-ceiling glass sliding doors.</p>
+                <p>Enjoy your mornings paddleboarding across the calm bay, walk to neighboring oceanfront restaurants, or watch the stars from the massive panoramic rooftop observation deck.</p>
+            </div>
+            <!-- UPGRADED: ACTIVE MULTI-IMAGE CAROUSEL ENGINE -->
+            <div class="showcase-slider-frame">
+                
+                <!-- SLIDE NO. 1: THE STAR OVERVIEW (PHOTO 22) -->
+                <div class="rental-slide active-slide" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="images/hero/22.jpg" alt="Casa Cavu Private Beachfront Swimming Pool and Ocean View Horizon">
+                </div>
+
+                <!-- SLIDE NO. 2: THE LIVING SPACES -->
+                <div class="rental-slide" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="images/interiors/15.jpg" alt="Open Concept Main Floor Coastal Living Lounge Framework">
+                </div>
+
+                <!-- SLIDE NO. 3: THE CHEF KITCHEN -->
+                <div class="rental-slide" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="images/interiors/16.jpg" alt="Fully Equipped Island Breakfast Bar Cooking Suite View">
+                </div>
+
+                <!-- SLIDE NO. 4: THE MASTER BEDROOM -->
+                <div class="rental-slide" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="images/bedrooms/3.jpg" alt="Upper Level Air Conditioned Master Suite with Private Sea Balcony">
+                </div>
+
+                <!-- INTERACTIVE NAVIGATION CONTROLS ARROWS -->
+                <button class="slide-nav-btn prev-arrow" onclick="moveSlider(-1)" aria-label="Previous Slide">‹</button>
+                <button class="slide-nav-btn next-arrow" onclick="moveSlider(1)" aria-label="Next Slide">›</button>
+
+                <!-- VISUAL INSTANCE POSITION INDICATORS (FIXED STRUCTURE) -->
+                <div class="slider-dots-row">
+                    <span class="slider-dot active-dot" onclick="setSlide(0)"></span>
+                    <span class="slider-dot" onclick="setSlide(1)"></span>
+                    <span class="slider-dot" onclick="setSlide(2)"></span>
+                    <span class="slider-dot" onclick="setSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ANCHORED SITE FOOTER -->
+    <footer class="rental-footer">
+        <p>Location: Tankah Tres (Tankah Bay), Quintana Roo, Mexico</p>
+        <p>© 2026 Casa Cavu. Handcrafted by Jeremiah Schultz. All Rights Reserved.</p>
+    </footer>
+
+    <!-- HIDDEN FULL-SCREEN LIGHTBOX MODAL OVERLAY -->
+    <div id="fairy-lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-frame-wrapper" style="position: relative; display: inline-block;">
+            <img class="lightbox-content" id="lightbox-zoom-target" alt="Enlarged Villa Showcase View">
+        </div>
+    </div>
+
+    <!-- MASTER HOMEPAGE INTERACTIVE CONTROLLER ENGINE -->
+    <script>
+        let currentSlideIndex = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.rental-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            // Safe mathematical boundaries checks
+            if (index >= slides.length) { 
+                currentSlideIndex = 0; 
+            } else if (index < 0) { 
+                currentSlideIndex = slides.length - 1; 
+            } else { 
+                currentSlideIndex = index; 
+            }
+
+            // Strips active styles off old items seamlessly
+            slides.forEach(slide => slide.classList.remove('active-slide'));
+            dots.forEach(dot => dot.classList.remove('active-dot'));
+
+            // Drops fresh active highlighting markers onto the selected indices
+            slides[currentSlideIndex].classList.add('active-slide');
+            dots[currentSlideIndex].classList.add('active-dot');
+        }
+
+        function moveSlider(direction) {
+            showSlide(currentSlideIndex + direction);
+        }
+
+        function setSlide(index) {
+            showSlide(index);
+        }
+
+        // FLOATING LIGHTBOX OVERLAY CONTROLLERS
+        function openLightbox(imagePath) {
+            const overlay = document.getElementById('fairy-lightbox');
+            const zoomImg = document.getElementById('lightbox-zoom-target');
+            zoomImg.src = imagePath;
+            overlay.classList.add('active-view');
+        }
+
+        function closeLightbox() {
+            const overlay = document.getElementById('fairy-lightbox');
+            overlay.classList.remove('active-view');
+        }
+    </script>
+
+</body>
+</html>
