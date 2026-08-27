@@ -624,6 +624,11 @@ body {
         object-fit: cover !important;
         display: block;
     }
+
+    /* 🌟 CONTACT FORM MOBILES BUFFER: Guarantees your inquiry title block sits fully exposed */
+    .contact-details-panel .panel-subtitle {
+        margin-top: 90px !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -685,6 +690,13 @@ body {
     .thumb-tile { flex: 0 0 75px !important; height: 55px !important; }
     .ribbon-arrow-btn { width: 28px !important; height: 28px !important; font-size: 1.2rem !important; line-height: 24px !important; }
 }
+
+/* 🌟 THE BREAKAWAY SPACING OVERRIDE: Forces text down from the screen ceiling */
+    .hero-popup-card, 
+    .gallery-heading, 
+    .amenities-heading {
+        margin-top: 110px !important; /* Pushes the elements fully past the sticky nav area on fresh page load */
+    }
 
 /* ==========================================================================
    MOORING STABLE FOOTER TRACK ENGINE
