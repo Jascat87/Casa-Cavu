@@ -1141,6 +1141,87 @@ body {
     border-radius: 4px;
 }
 
+/* ==========================================================================
+   GLOBAL BULLETPROOF MOBILE IMAGE SAFETIES
+   ========================================================================== */
+@media (max-width: 900px) {
+    /* 🌟 THE ULTIMATE FIX: Forces every single responsive img tag on your phone to fit its container box */
+    img {
+        max-width: 100% !important;
+        height: auto;
+    }
+
+    /* Hard-locks the body and HTML canvas from ever spilling sideways */
+    html, body {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+}
+
+/* ==========================================================================
+   THEATER SYSTEM FULL MOBILE RESET OVERRIDES (768px and Below)
+   ========================================================================== */
 @media (max-width: 768px) {
-    .showcase-slider-frame { height: 320px; box-shadow: 10px 10px 0px var(--parchment-dark); }
+    .archive-gallery-container {
+        padding-top: 140px; /* Brings heading room down comfortably on mobile */
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    /* 🛠️ GALLERY WINDOW MOBILES SECURITY LOCK: Hard-constrains layout bounds */
+    .gallery-theater-stage { 
+        height: 280px !important; /* Perfect sleek panoramic height for mobile frames */
+        width: calc(100vw - 40px) !important; /* Forces 20px padding margins on left and right */
+        max-width: 100% !important;
+        margin: 0 auto 20px auto !important;
+        box-shadow: 10px 10px 0px var(--parchment-dark) !important;
+        overflow: hidden !important;
+    }
+    
+    .theater-view-window {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .theater-view-window img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        object-fit: cover !important; /* Mandates perfect clipping shapes inside your 280px box */
+    }
+
+    /* Shrinks floating arrow buttons so they don't block mobile image viewing */
+    .theater-nav-btn {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1.4rem !important;
+        line-height: 34px !important;
+    }
+
+    /* LOWER THUMBNAIL TRACK SLIDER MOBILES ALIGNMENTS */
+    .ribbon-carousel-wrapper { 
+        padding: 0 40px !important; 
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
+    .thumbnail-ribbon {
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 8px !important;
+    }
+
+    .thumb-tile { 
+        flex: 0 0 75px !important; /* Shrinks thumbnails slightly for tighter smartphone glass grids */
+        height: 55px !important; 
+    }
+
+    .ribbon-arrow-btn {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 1.2rem !important;
+        line-height: 24px !important;
+    }
 }
