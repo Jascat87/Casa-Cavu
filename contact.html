@@ -256,6 +256,8 @@
 
                 let dayNode = document.createElement('span');
                 dayNode.className = `date-tile status-${status}`;
+                
+                // 🌟 FIX 1: Restores the razor-sharp raw typography numbers
                 dayNode.innerText = day;
 
                 // 🛠️ FIX 2: Mandates strict click listeners lock down the second her session opens
@@ -318,10 +320,17 @@
                 }
             }
             
+            // 🌟 REAL-TIME WORKFLOW FIX: Wipes out selection list borders instantly so she sees her color updates immediately!
             selectedAdminDates.clear();
             document.getElementById('admin-target-date').value = "Click calendar dates above...";
             
-            updateExportDisplayString();
+            // Re-render the calendar matrix instantly to show the new terracotta shading profiles!
+            renderDualMonthsView();
+            
+            // Delays the popup slightly so she gets the visual validation of the colors changing first
+            setTimeout(() => {
+                alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
+            }, 150);
             renderDualMonthsView();
             alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
         }
