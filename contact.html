@@ -119,10 +119,6 @@
                     </div>
                     <button class="admin-save-btn" onclick="updateDateStatus()">Update Day Status</button>
                 </div>
-                <div class="admin-export-box">
-                    <label>Save Data Configuration String (Copy & save this text block to permanently lock on refresh):</label>
-                    <textarea id="admin-export-textarea" readonly onclick="this.select()"></textarea>
-                </div>
             </div>
         </section>
     </div>
@@ -205,7 +201,6 @@
             } catch (err) {
                 console.warn("Database background sync fallback active:", err.message);
             }
-            updateExportDisplayString();
         }
 
         // TWO-MONTH SIDE-BY-SIDE RENDER LOOP
@@ -331,10 +326,6 @@
             alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
         }
 
-        function updateExportDisplayString() {
-            const tx = document.getElementById('admin-export-textarea');
-            if (tx) tx.value = JSON.stringify(bookingDataVault);
-        }
     </script>
 
 </body>
