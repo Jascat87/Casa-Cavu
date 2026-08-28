@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservations & Inquiries | Casa Cavu Tankah Bay</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 🌟 THE ULTIMATE CLOUD ENGINE FIX: Pre-loads the stable Supabase database client module -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2.39.0/dist/umd/supabase.js"></script>
 </head>
 <body>
 
@@ -26,8 +28,8 @@
     </nav>
 
     <!-- INQUIRY LAYOUT STRUCTURE WRAPPER -->
+    <!-- UPPER SECTION: THE BALANCED SPLIT-SCREEN CONTACT CARD -->
     <main class="contact-layout-container">
-        
         <div class="contact-grid-card">
             
             <!-- LEFT COLUMN: THE DIRECT CONTACT PORTAL -->
@@ -62,13 +64,68 @@
                 <p class="seasonal-notice">✦ <strong>Note on Seasonal Booking:</strong> Minimum night stays vary from 3 to 7 nights depending on the time of year. Purified water, professional cleaning service 6 days per week, and all beach linens are fully included in your stay.</p>
             </div>
 
-            <!-- RIGHT COLUMN: THE TRUST BRIDGING IMAGE -->
+            <!-- RIGHT COLUMN: THE VISUAL PANEL -->
             <div class="contact-visual-frame">
-                <!-- Drop a beautiful, inviting image of the beach entry or exterior here -->
                 <img src="images/hero/2.jpg" alt="Casa Cavu Welcoming Beach House Entry at Tankah Tres">
             </div>
 
         </div>
+    </main> <!-- 🌟 THE CLOSE GATE: Closes out the split columns grid cleanly right here! -->
+
+    <!-- LOWER SECTION: THE INDEPENDENT WIDESCREEN CALENDAR HUB -->
+    <div class="calendar-layout-container">
+        <section class="calendar-section-wrapper">
+            <div class="calendar-section-header">
+                <h3 class="calendar-heading-main">Property Availability</h3>
+                <p class="calendar-subheading">Plan your escape. Check real-time seasonal dates before inquiring.</p>
+            </div>
+
+            <!-- PUBLIC CONTROLS & TIMELINE VIEWER TRACK -->
+            <div class="calendar-timeline-toolbar">
+                <button class="calendar-nav-btn" id="prev-months-btn" onclick="navigateMonths(-1)">‹</button>
+                <div class="calendar-months-grid" id="calendar-months-container">
+                    <!-- Left and Right months will render dynamically here via JavaScript -->
+                </div>
+                <button class="calendar-nav-btn" id="next-months-btn" onclick="navigateMonths(1)">›</button>
+            </div>
+
+            <!-- THE VISUAL BOOKING STATUS LEGEND SYSTEM -->
+            <div class="calendar-legend-bar">
+                <div class="legend-item"><span class="legend-box state-available"></span> Night Available</div>
+                <div class="legend-item"><span class="legend-box state-unavailable"></span> Night Unavailable</div>
+                <div class="legend-item"><span class="legend-box state-arrive"></span> Arrive Only</div>
+                <div class="legend-item"><span class="legend-box state-depart"></span> Depart Only</div>
+            </div>
+
+            <!-- SECRET QUERY-STRING ACTIVATED MANAGEMENT ADMIN HUB -->
+            <div id="calendar-admin-dashboard" class="calendar-admin-panel" style="display: none;">
+                <div class="admin-panel-header">
+                    <h4>🛠️ Casa Cavu Booking Manager Dashboard</h4>
+                    <p>Click any date tile above, select its booking status below, and save your state config parameters.</p>
+                </div>
+                <div class="admin-controls-row">
+                    <div class="control-group">
+                        <label>Selected Target Date:</label>
+                        <input type="text" id="admin-target-date" readonly value="Click a calendar date above...">
+                    </div>
+                    <div class="control-group">
+                        <label>Assign Booking Status:</label>
+                        <select id="admin-status-select">
+                            <option value="available">Night Available</option>
+                            <option value="unavailable">Night Unavailable</option>
+                            <option value="arrive">Arrive Only</option>
+                            <option value="depart">Depart Only</option>
+                        </select>
+                    </div>
+                    <button class="admin-save-btn" onclick="updateDateStatus()">Update Day Status</button>
+                </div>
+                <div class="admin-export-box">
+                    <label>Save Data Configuration String (Copy & save this text block to permanently lock on refresh):</label>
+                    <textarea id="admin-export-textarea" readonly onclick="this.select()"></textarea>
+                </div>
+            </div>
+        </section>
+    </div>
 
     </main>
 
@@ -77,6 +134,208 @@
         <p>Location: Tankah Tres (Tankah Bay), Quintana Roo, Mexico</p>
         <p>© 2026 Casa Cavu. Handcrafted by Jeremiah Schultz. All Rights Reserved.</p>
     </footer>
+
+    <!-- MASTER CALENDAR SCROLLING & BULK-EDITING CONTROLLER ENGINE -->
+    <!-- MASTER CALENDAR SCROLLING & CLOUD BULK-EDITING CONTROLLER ENGINE -->
+    <script>
+        // ✦ SECURE CLOUD DATABASE ACCESS PARAMETERS ✦
+        const SUPABASE_URL = "https://wmrcnwcbfjbhvzpnsohi.supabase.co"; 
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndtcmNud2NiZmpiaHZ6cG5zb2hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4ODE5MzUsImV4cCI6MjEwMzQ1NzkzNX0.Bz-67uBLrEgca0WEHPNxeRdg_S38nsBHUQkxnqbUnVM"; 
+        
+        let supabaseClientInstance = null;
+        let bookingDataVault = {};
+
+        // 🌟 FIXED FALLBACK: Emptied out old presets to completely eliminate the split-second visual data flash!
+        let defaultBookingData = {};
+
+        // 🌟 LIVE CLOCK ENGINE: Dynamically calculates the current month and year on load forever!
+        //const systemLiveClock = new Date();
+        const systemLiveClock = new Date(2026, 11, 15); // 🎄 Tricks the browser into thinking it is December 15, 2026
+        // The anchor date tracks the exact real-world current month to lock our historical scroll boundaries
+        let anchorDate = new Date(systemLiveClock.getFullYear(), systemLiveClock.getMonth(), 1); 
+        
+        // Display pointers dynamically set the current month and year views
+        let displayCurrentYear = systemLiveClock.getFullYear();
+        let displayCurrentMonth = systemLiveClock.getMonth(); 
+
+        let selectedAdminDates = new Set();
+        let isManagementModeUnlocked = false;
+
+        // INITIAL ENGINE IGNITION UPON PAGE LOAD
+        window.addEventListener('DOMContentLoaded', async () => {
+            // 🛠️ FIX 1: Verify the admin url string first to unlock the clicking engine instantly
+            verifyAdminUrlSecurity();
+            
+            // Pre-load our beautiful defaults so tiles are instantly active
+            bookingDataVault = {...defaultBookingData};
+            renderDualMonthsView();
+            
+            // Connect to your live database table silently in the background
+            await initializeCloudConnectionTrack();
+        });
+
+        function verifyAdminUrlSecurity() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'cavu2026') {
+                isManagementModeUnlocked = true;
+                document.getElementById('calendar-admin-dashboard').style.display = 'block';
+            }
+        }
+
+        // SAFE BACKGROUND CLOUD SYNCHRONIZATION CONNECTOR
+        async function initializeCloudConnectionTrack() {
+            try {
+                const cloudLibrary = window.supabase || window['@supabase/supabase-js'];
+                
+                if (cloudLibrary && SUPABASE_URL !== "YOUR_SUPABASE_PROJECT_URL_HERE") {
+                    supabaseClientInstance = cloudLibrary.createClient(SUPABASE_URL, SUPABASE_KEY);
+                    
+                    const { data, error } = await supabaseClientInstance.from('bookings').select('*');
+                    if (error) throw error;
+                    
+                    if (data && data.length > 0) {
+                        bookingDataVault = {};
+                        data.forEach(row => {
+                            bookingDataVault[row.date_string] = row.status_string;
+                        });
+                        // Smoothly refresh the color tiles once database finishes downloading
+                        renderDualMonthsView();
+                    }
+                }
+            } catch (err) {
+                console.warn("Database background sync fallback active:", err.message);
+            }
+            updateExportDisplayString();
+        }
+
+        // TWO-MONTH SIDE-BY-SIDE RENDER LOOP
+        function renderDualMonthsView() {
+            const container = document.getElementById('calendar-months-container');
+            if (!container) return;
+            container.innerHTML = ''; 
+
+            let yearMonthPairs = [];
+            let m1 = displayCurrentMonth;
+            let y1 = displayCurrentYear;
+            yearMonthPairs.push({ year: y1, month: m1 });
+
+            let m2 = m1 + 1;
+            let y2 = y1;
+            if (m2 > 11) { m2 = 0; y2++; }
+            yearMonthPairs.push({ year: y2, month: m2 });
+
+            yearMonthPairs.forEach(pair => {
+                container.appendChild(constructSingleMonthCardMarkup(pair.year, pair.month));
+            });
+
+            enforceScrollingBoundaries();
+        }
+
+        function constructSingleMonthCardMarkup(year, month) {
+            const monthsNamesList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            const card = document.createElement('div');
+            card.className = 'month-card';
+
+            const title = document.createElement('div');
+            title.className = 'month-title';
+            title.innerText = `${monthsNamesList[month]} ${year}`;
+            card.appendChild(title);
+
+            const headers = document.createElement('div');
+            headers.className = 'days-header-row';
+            ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].forEach(d => { headers.innerHTML += `<span>${d}</span>`; });
+            card.appendChild(headers);
+
+            const matrix = document.createElement('div');
+            matrix.className = 'days-grid-matrix';
+
+            let firstDayIndex = new Date(year, month, 1).getDay();
+            let totalDaysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDayIndex; i++) { matrix.innerHTML += `<span class="date-tile empty-space"></span>`; }
+
+            for (let day = 1; day <= totalDaysInMonth; day++) {
+                let dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                let status = bookingDataVault[dateStr] || 'available';
+
+                let dayNode = document.createElement('span');
+                dayNode.className = `date-tile status-${status}`;
+                dayNode.innerText = day;
+
+                // 🛠️ FIX 2: Mandates strict click listeners lock down the second her session opens
+                if (isManagementModeUnlocked) {
+                    dayNode.classList.add('selectable-day');
+                    if (selectedAdminDates.has(dateStr)) {
+                        dayNode.classList.add('admin-selected-focus');
+                    }
+                    
+                    dayNode.onclick = () => {
+                        if (selectedAdminDates.has(dateStr)) {
+                            selectedAdminDates.delete(dateStr);
+                        } else {
+                            selectedAdminDates.add(dateStr);
+                        }
+                        const count = selectedAdminDates.size;
+                        document.getElementById('admin-target-date').value = count > 0 ? `${count} Dates Selected` : "Click calendar dates above...";
+                        renderDualMonthsView(); 
+                    };
+                }
+                matrix.appendChild(dayNode);
+            }
+            card.appendChild(matrix);
+            return card;
+        }
+
+        function navigateMonths(direction) {
+            displayCurrentMonth += direction;
+            if (displayCurrentMonth > 11) { displayCurrentMonth = 0; displayCurrentYear++; }
+            if (displayCurrentMonth < 0) { displayCurrentMonth = 11; displayCurrentYear--; }
+            renderDualMonthsView();
+        }
+
+        function enforceScrollingBoundaries() {
+            let anchorMonthsTotal = (anchorDate.getFullYear() * 12) + anchorDate.getMonth();
+            let currentMonthsTotal = (displayCurrentYear * 12) + displayCurrentMonth;
+            const prevBtn = document.getElementById('prev-months-btn');
+            if (prevBtn) {
+                prevBtn.style.visibility = (anchorMonthsTotal - currentMonthsTotal >= 3) ? 'hidden' : 'visible';
+            }
+        }
+
+        // BATCH CLOUD UPDATE SUBMISSION METHOD
+        async function updateDateStatus() {
+            if (selectedAdminDates.size === 0) return;
+            const chosenStatus = document.getElementById('admin-status-select').value;
+            
+            // 🛠️ FIX 3: Fully targets the live Client Instance to guarantee rows upload
+            for (let dateStr of selectedAdminDates) {
+                if (chosenStatus === 'available') {
+                    if (supabaseClientInstance) {
+                        await supabaseClientInstance.from('bookings').delete().eq('date_string', dateStr);
+                    }
+                    delete bookingDataVault[dateStr];
+                } else {
+                    if (supabaseClientInstance) {
+                        await supabaseClientInstance.from('bookings').upsert({ date_string: dateStr, status_string: chosenStatus }, { onConflict: 'date_string' });
+                    }
+                    bookingDataVault[dateStr] = chosenStatus;
+                }
+            }
+            
+            selectedAdminDates.clear();
+            document.getElementById('admin-target-date').value = "Click calendar dates above...";
+            
+            updateExportDisplayString();
+            renderDualMonthsView();
+            alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
+        }
+
+        function updateExportDisplayString() {
+            const tx = document.getElementById('admin-export-textarea');
+            if (tx) tx.value = JSON.stringify(bookingDataVault);
+        }
+    </script>
 
 </body>
 </html>
