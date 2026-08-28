@@ -149,8 +149,8 @@
         let defaultBookingData = {};
 
         // 🌟 LIVE CLOCK ENGINE: Dynamically calculates the current month and year on load forever!
-        //const systemLiveClock = new Date();
-        const systemLiveClock = new Date(2026, 11, 15); // 🎄 Tricks the browser into thinking it is December 15, 2026
+        const systemLiveClock = new Date();
+        
         // The anchor date tracks the exact real-world current month to lock our historical scroll boundaries
         let anchorDate = new Date(systemLiveClock.getFullYear(), systemLiveClock.getMonth(), 1); 
         
