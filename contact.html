@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <!-- STICKY DIRECTORY NAVBAR -->
     <!-- UPGRADED LUXURY NAVIGATION FRAMEWORK -->
     <nav class="rental-nav">
         <div class="nav-container">
@@ -45,7 +44,6 @@
                         <span class="channel-icon">📞</span>
                         <div class="channel-text">
                             <span class="channel-label">Call, Text, or Whatsapp Directly:</span>
-                            <!-- Replace with your relative's real phone number -->
                             <a href="tel:+18305499024" class="channel-link">+1 (830) 549-9024</a>
                         </div>
                     </div>
@@ -55,7 +53,6 @@
                         <span class="channel-icon">✉️</span>
                         <div class="channel-text">
                             <span class="channel-label">Send an Email:</span>
-                            <!-- Replace with your relative's real email address -->
                             <a href="mailto:radiotekpd@aol.com" class="channel-link">radiotekpd@aol.com</a>
                         </div>
                     </div>
@@ -131,7 +128,6 @@
         <p>© 2026 Casa Cavu. Handcrafted by Jeremiah Schultz. All Rights Reserved.</p>
     </footer>
 
-    <!-- MASTER CALENDAR SCROLLING & BULK-EDITING CONTROLLER ENGINE -->
     <!-- MASTER CALENDAR SCROLLING & CLOUD BULK-EDITING CONTROLLER ENGINE -->
     <script>
         // ✦ SECURE CLOUD DATABASE ACCESS PARAMETERS ✦
@@ -162,7 +158,7 @@
             // 🛠️ FIX 1: Verify the admin url string first to unlock the clicking engine instantly
             verifyAdminUrlSecurity();
             
-            // Pre-load our beautiful defaults so tiles are instantly active
+            // Pre-load beautiful defaults so tiles are instantly active
             bookingDataVault = {...defaultBookingData};
             renderDualMonthsView();
             
@@ -257,25 +253,33 @@
                 let dayNode = document.createElement('span');
                 dayNode.className = `date-tile status-${status}`;
                 
-                // 🌟 FIX 1: Restores the razor-sharp raw typography numbers
+                // 🌟 FIX 1: Restores the sharp raw typography numbers
                 dayNode.innerText = day;
 
-                // 🛠️ FIX 2: Mandates strict click listeners lock down the second her session opens
+                // 🛠️ FIX 2: Mandates strict click listeners lock down the second the session opens
                 if (isManagementModeUnlocked) {
                     dayNode.classList.add('selectable-day');
                     if (selectedAdminDates.has(dateStr)) {
                         dayNode.classList.add('admin-selected-focus');
                     }
                     
+                    // 🌟 HIGH-PERFORMANCE WORKFLOW UPGRADE: Toggles borders in real-time with ZERO heavy re-renders!
+                    // 🌟 SAFETY LOCK UPGRADE: Adds a clean null check to shield public visitors!
                     dayNode.onclick = () => {
                         if (selectedAdminDates.has(dateStr)) {
                             selectedAdminDates.delete(dateStr);
                         } else {
                             selectedAdminDates.add(dateStr);
                         }
-                        const count = selectedAdminDates.size;
-                        document.getElementById('admin-target-date').value = count > 0 ? `${count} Dates Selected` : "Click calendar dates above...";
-                        renderDualMonthsView(); 
+                        
+                        dayNode.classList.toggle('admin-selected-focus');
+                        
+                        // 🛠️ NULL CHECK: Only updates the text input field if it exists on the page
+                        const targetDateInput = document.getElementById('admin-target-date');
+                        if (targetDateInput) {
+                            const count = selectedAdminDates.size;
+                            targetDateInput.value = count > 0 ? `${count} Dates Selected` : "Click calendar dates above...";
+                        }
                     };
                 }
                 matrix.appendChild(dayNode);
@@ -301,38 +305,77 @@
         }
 
         // BATCH CLOUD UPDATE SUBMISSION METHOD
+        // 🌟 ROBUST UI FEEDBACK UPGRADE: Features active saving states and network error handlers!
         async function updateDateStatus() {
             if (selectedAdminDates.size === 0) return;
+            
+            // Micro-target the action button to apply UI loading states
+            const saveBtn = document.querySelector('.admin-save-btn');
             const chosenStatus = document.getElementById('admin-status-select').value;
             
-            // 🛠️ FIX 3: Fully targets the live Client Instance to guarantee rows upload
-            for (let dateStr of selectedAdminDates) {
-                if (chosenStatus === 'available') {
-                    if (supabaseClientInstance) {
-                        await supabaseClientInstance.from('bookings').delete().eq('date_string', dateStr);
+            // 🛡️ LOCK STEP 1: Turn on the "Saving..." state and freeze the button to stop accidental double-clicks
+            saveBtn.disabled = true;
+            saveBtn.style.opacity = "0.6";
+            saveBtn.innerText = "Saving to Cloud...";
+            
+            try {
+                const cloudPromisesQueue = [];
+                
+                for (let dateStr of selectedAdminDates) {
+                    if (chosenStatus === 'available') {
+                        if (supabaseClientInstance) {
+                            cloudPromisesQueue.push(
+                                supabaseClientInstance.from('bookings').delete().eq('date_string', dateStr)
+                            );
+                        }
+                        bookingDataVault[dateStr] = 'available'; // Set immediately locally
+                    } else {
+                        if (supabaseClientInstance) {
+                            cloudPromisesQueue.push(
+                                supabaseClientInstance.from('bookings').upsert(
+                                    { date_string: dateStr, status_string: chosenStatus }, 
+                                    { onConflict: 'date_string' }
+                                )
+                            );
+                        }
+                        bookingDataVault[dateStr] = chosenStatus;
                     }
-                    delete bookingDataVault[dateStr];
-                } else {
-                    if (supabaseClientInstance) {
-                        await supabaseClientInstance.from('bookings').upsert({ date_string: dateStr, status_string: chosenStatus }, { onConflict: 'date_string' });
-                    }
-                    bookingDataVault[dateStr] = chosenStatus;
                 }
+                
+                // Fire all cloud database packets concurrently
+                if (cloudPromisesQueue.length > 0) {
+                    await Promise.all(cloudPromisesQueue);
+                }
+                
+                // Clear active blue selection borders locally
+                selectedAdminDates.clear();
+                
+                // 🛠️ NULL CHECK: Protects the application interface during bulk-saves
+                const targetDateInput = document.getElementById('admin-target-date');
+                if (targetDateInput) {
+                    targetDateInput.value = "Click calendar dates above...";
+                }
+                
+                // Instantly repaint the calendar matrix with the fresh terracotta colors
+                renderDualMonthsView();
+                
+                setTimeout(() => {
+                    alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
+                }, 100);
+
+            } catch (error) {
+                // 🛡️ LOCK STEP 2: Catch network errors gracefully and inform the user
+                console.error("Cloud Sync Failure Error:", error.message);
+                alert("❌ Network Error: Failed to synchronize dates to the cloud database. Please verify your internet connection and try again.");
+                
+                // Re-render to revert any unsaved local focus adjustments
+                renderDualMonthsView();
+            } finally {
+                // 🛡️ LOCK STEP 3: Always unlock the button and reset its styles when the operation ends
+                saveBtn.disabled = false;
+                saveBtn.style.opacity = "1";
+                saveBtn.innerText = "Update Day Status";
             }
-            
-            // 🌟 REAL-TIME WORKFLOW FIX: Wipes out selection list borders instantly so she sees her color updates immediately!
-            selectedAdminDates.clear();
-            document.getElementById('admin-target-date').value = "Click calendar dates above...";
-            
-            // Re-render the calendar matrix instantly to show the new terracotta shading profiles!
-            renderDualMonthsView();
-            
-            // Delays the popup slightly so she gets the visual validation of the colors changing first
-            setTimeout(() => {
-                alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
-            }, 150);
-            renderDualMonthsView();
-            alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
         }
 
     </script>
