@@ -122,6 +122,9 @@
 
     </main>
 
+    <!-- 🌟 THE TOAST ELEMENT TRACK: Hidden completely until triggered by a save click -->
+    <div id="calendar-toast" class="custom-toast-notification">✨ Success! Calendar Dates Synced Live to the Cloud Database!</div>
+
     <!-- STABLE FOOTER ANCHOR -->
     <footer class="rental-footer">
         <p>Location: Tankah Tres (Tankah Bay), Quintana Roo, Mexico</p>
@@ -328,7 +331,8 @@
                                 supabaseClientInstance.from('bookings').delete().eq('date_string', dateStr)
                             );
                         }
-                        bookingDataVault[dateStr] = 'available'; // Set immediately locally
+                        // 🌟 ARCHITECTURAL UNIFICATION FIX: Purges the local memory key to perfectly match your cloud table deletions!
+                    delete bookingDataVault[dateStr];
                     } else {
                         if (supabaseClientInstance) {
                             cloudPromisesQueue.push(
@@ -359,14 +363,14 @@
                 // Instantly repaint the calendar matrix with the fresh terracotta colors
                 renderDualMonthsView();
                 
-                setTimeout(() => {
-                    alert("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
-                }, 100);
+                // 🌟 TOAST ACTIVATOR: Slides the polished non-blocking toast notification up cleanly!
+                showCustomToastNotification("✨ Success! Calendar Dates Synced Live to the Cloud Database!");
 
             } catch (error) {
                 // 🛡️ LOCK STEP 2: Catch network errors gracefully and inform the user
                 console.error("Cloud Sync Failure Error:", error.message);
-                alert("❌ Network Error: Failed to synchronize dates to the cloud database. Please verify your internet connection and try again.");
+                // 🌟 ERROR TOAST ACTIVATOR: Alerts her safely without breaking page operations
+                showCustomToastNotification("❌ Network Error: Failed to synchronize dates to the cloud database.", true);;
                 
                 // Re-render to revert any unsaved local focus adjustments
                 renderDualMonthsView();
@@ -377,6 +381,24 @@
                 saveBtn.innerText = "Update Day Status";
             }
         }
+
+            // MASTER ANIMATED FLOATING TOAST SYSTEM CONTROLLER
+            function showCustomToastNotification(message, isError = false) {
+                const toast = document.getElementById('calendar-toast');
+                if (!toast) return;
+                
+                // Adjust styles dynamically if it's an error alert
+                toast.innerText = message;
+                toast.style.borderLeftColor = isError ? "#d94343" : "var(--terracotta)";
+                
+                // Fire the slide-up class trigger animation
+                toast.classList.add('toast-active');
+                
+                // Automatically slide the notification block back down out of view after 3.5 seconds
+                setTimeout(() => {
+                    toast.classList.remove('toast-active');
+                }, 3500);
+            }
 
     </script>
 
