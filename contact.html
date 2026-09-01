@@ -441,16 +441,20 @@
                             const totalUniqueVisitorsCount = new Set(trafficRows.map(row => row.visitor_hash)).size;
                             
                             // 3. Compute ACTIVE views today (Filters rows by current calendar day string)
-                            // 🌟 TIMEZONE CORRECTION FIX: Calculates today's local date card string
-                            const targetTimeOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                            const localParts = new Intl.DateTimeFormat('en-CA', targetTimeOptions).formatToParts(new Date());
-                            const localYear = localParts.find(p => p.type === 'year').value;
-                            const localMonth = localParts.find(p => p.type === 'month').value;
-                            const localDay = localParts.find(p => p.type === 'day').value;
-                            const userTodayDateString = `${localYear}-${localMonth}-${localDay}`;
+                            // 🌟 OPTION B WORKFLOW: Reusable local day helper function
+                            function getLocalDateString(date = new Date()) {
+                                const y = date.getFullYear();
+                                const m = String(date.getMonth() + 1).padStart(2, '0');
+                                const d = String(date.getDate()).padStart(2, '0');
+                                return `${y}-${m}-${d}`;
+                            }
+
+                            const userTodayDateString = getLocalDateString();
                             
+                            // Maps and compares each database timestamp securely back to her local calendar tracking day
                             const activeViewsTodayCount = trafficRows.filter(row => {
-                                return row.visited_at && row.visited_at.startsWith(userTodayDateString);
+                                if (!row.visited_at) return false;
+                                return getLocalDateString(new Date(row.visited_at)) === userTodayDateString;
                             }).length;
                             
                             // 4. Smoothly inject the calculations straight into her dashboard display text nodes

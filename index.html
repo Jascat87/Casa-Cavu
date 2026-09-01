@@ -210,26 +210,36 @@
                 const uniqueVisitorHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
                 // Check Supabase cloud spreadsheet to see if this specific visitor has logged a row today
-                // 🌟 TIMEZONE CORRECTION FIX: Extracts an accurate local YYYY-MM-DD string
-                const targetTimeOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                const localParts = new Intl.DateTimeFormat('en-CA', targetTimeOptions).formatToParts(new Date());
-                const localYear = localParts.find(p => p.type === 'year').value;
-                const localMonth = localParts.find(p => p.type === 'month').value;
-                const localDay = localParts.find(p => p.type === 'day').value;
-                const todayDateString = `${localYear}-${localMonth}-${localDay}`;
+                // 🌟 OPTION B WORKFLOW: Reusable local day helper function
+                function getLocalDateString(date = new Date()) {
+                    const y = date.getFullYear();
+                    const m = String(date.getMonth() + 1).padStart(2, '0');
+                    const d = String(date.getDate()).padStart(2, '0');
+                    return `${y}-${m}-${d}`;
+                }
+
+                const todayDateString = getLocalDateString();
                 
-                const { data: existingVisits, error: fetchError } = await supabaseTracker
+                // Query using explicit local date structures to safeguard daily tracking boundaries
+                const { data: trafficDump, error: fetchError } = await supabaseTracker
                     .from('analytics')
-                    .select('id')
-                    .eq('visitor_hash', uniqueVisitorHash)
-                    .gte('visited_at', `${todayDateString}T00:00:00.000Z`);
+                    .select('id, visited_at')
+                    .eq('visitor_hash', uniqueVisitorHash);
 
                 if (fetchError) throw fetchError;
 
-                // 🚀 LIVE INJECT: If they haven't visited yet today, log their entry!
-                if (!existingVisits || existingVisits.length === 0) {
+                // Filter out if they already have a matching local string token saved for today
+                const alreadyVisitedToday = trafficDump && trafficDump.some(row => {
+                    return row.visited_at && getLocalDateString(new Date(row.visited_at)) === todayDateString;
+                });
+
+                if (!alreadyVisitedToday) {
+                    // 🚀 SECURE TIMESTAMPTZ INSERTION: Sends explicit universal tracking data
                     await supabaseTracker.from('analytics').insert([
-                        { visitor_hash: uniqueVisitorHash }
+                        { 
+                            visitor_hash: uniqueVisitorHash, 
+                            visited_at: new Date().toISOString() 
+                        }
                     ]);
                 }
             } catch (err) {
