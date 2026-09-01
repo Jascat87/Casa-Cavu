@@ -100,6 +100,25 @@
                     <h4>🛠️ Casa Cavu Booking Manager Dashboard</h4>
                     <p>Click any date tile above, select its booking status below, and save your state config parameters.</p>
                 </div>
+
+            <!-- 📊 LIVE ANALYTICS ENGAGEMENT STATUS GRID BOARD -->
+                    <div class="admin-analytics-metrics-grid">
+                        <div class="analytics-card-stat">
+                            <span class="analytics-card-icon">👥</span>
+                            <div class="analytics-card-data-block">
+                                <h5 id="analytics-total-unique-views-count">--</h5>
+                                <p>Total Unique Visitors</p>
+                            </div>
+                        </div>
+                        <div class="analytics-card-stat">
+                            <span class="analytics-card-icon">📈</span>
+                            <div class="analytics-card-data-block">
+                                <h5 id="analytics-today-active-views-count">--</h5>
+                                <p>Active Views Today</p>
+                            </div>
+                        </div>
+                    </div>
+
                 <div class="admin-controls-row">
                     <div class="control-group">
                         <label>Selected Target Date:</label>
@@ -169,11 +188,15 @@
             await initializeCloudConnectionTrack();
         });
 
+        // 🛠️ UPGRADED GATE HANDLER: Fires live view count logs whenever admin panel is unlocked
         function verifyAdminUrlSecurity() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('admin') === 'cavu2026') {
                 isManagementModeUnlocked = true;
                 document.getElementById('calendar-admin-dashboard').style.display = 'block';
+                
+                // Triggers background count loops instantly on login
+                setTimeout(fetchAndCalculateLiveAnalyticsMetrics, 200);
             }
         }
 
@@ -369,7 +392,7 @@
             } catch (error) {
                 // 🛡️ LOCK STEP 2: Catch network errors gracefully and inform the user
                 console.error("Cloud Sync Failure Error:", error.message);
-                // 🌟 ERROR TOAST ACTIVATOR: Alerts her safely without breaking page operations
+                // 🌟 ERROR TOAST ACTIVATOR: Alerts safely without breaking page operations
                 showCustomToastNotification("❌ Network Error: Failed to synchronize dates to the cloud database.", true);;
                 
                 // Re-render to revert any unsaved local focus adjustments
@@ -399,6 +422,41 @@
                     toast.classList.remove('toast-active');
                 }, 3500);
             }
+
+            // 👥 LIVE ANALYTICS COUNTER COMPUTATION ENGINE
+                async function fetchAndCalculateLiveAnalyticsMetrics() {
+                    // Safety check verifies that your database client is active
+                    if (!supabaseClientInstance) return;
+                    
+                    try {
+                        // 1. Download all traffic rows currently recorded inside your cloud table
+                        const { data: trafficRows, error: analyticsError } = await supabaseClientInstance
+                            .from('analytics')
+                            .select('visitor_hash, visited_at');
+                            
+                        if (analyticsError) throw analyticsError;
+                        
+                        if (trafficRows) {
+                            // 2. Compute TOTAL unique visitors (Set array filters out duplicate hashes)
+                            const totalUniqueVisitorsCount = new Set(trafficRows.map(row => row.visitor_hash)).size;
+                            
+                            // 3. Compute ACTIVE views today (Filters rows by current calendar day string)
+                            const userTodayDateString = new Date().toISOString().split('T')[0];
+                            const activeViewsTodayCount = trafficRows.filter(row => {
+                                return row.visited_at && row.visited_at.startsWith(userTodayDateString);
+                            }).length;
+                            
+                            // 4. Smoothly inject the calculations straight into her dashboard display text nodes
+                            const totalField = document.getElementById('analytics-total-unique-views-count');
+                            const todayField = document.getElementById('analytics-today-active-views-count');
+                            
+                            if (totalField) totalField.innerText = totalUniqueVisitorsCount;
+                            if (todayField) todayField.innerText = activeViewsTodayCount;
+                        }
+                    } catch (err) {
+                        console.warn("Analytics panel readout bypassed:", err.message);
+                    }
+                }
 
     </script>
 
