@@ -441,7 +441,14 @@
                             const totalUniqueVisitorsCount = new Set(trafficRows.map(row => row.visitor_hash)).size;
                             
                             // 3. Compute ACTIVE views today (Filters rows by current calendar day string)
-                            const userTodayDateString = new Date().toISOString().split('T')[0];
+                            // 🌟 TIMEZONE CORRECTION FIX: Calculates today's local date card string
+                            const targetTimeOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                            const localParts = new Intl.DateTimeFormat('en-CA', targetTimeOptions).formatToParts(new Date());
+                            const localYear = localParts.find(p => p.type === 'year').value;
+                            const localMonth = localParts.find(p => p.type === 'month').value;
+                            const localDay = localParts.find(p => p.type === 'day').value;
+                            const userTodayDateString = `${localYear}-${localMonth}-${localDay}`;
+                            
                             const activeViewsTodayCount = trafficRows.filter(row => {
                                 return row.visited_at && row.visited_at.startsWith(userTodayDateString);
                             }).length;

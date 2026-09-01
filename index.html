@@ -209,8 +209,14 @@
                 const hashArray = Array.from(new Uint8Array(hashBuffer));
                 const uniqueVisitorHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 
-                // Check our Supabase cloud spreadsheet to see if this specific visitor has logged a row today
-                const todayDateString = new Date().toISOString().split('T')[0];
+                // Check Supabase cloud spreadsheet to see if this specific visitor has logged a row today
+                // 🌟 TIMEZONE CORRECTION FIX: Extracts an accurate local YYYY-MM-DD string
+                const targetTimeOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                const localParts = new Intl.DateTimeFormat('en-CA', targetTimeOptions).formatToParts(new Date());
+                const localYear = localParts.find(p => p.type === 'year').value;
+                const localMonth = localParts.find(p => p.type === 'month').value;
+                const localDay = localParts.find(p => p.type === 'day').value;
+                const todayDateString = `${localYear}-${localMonth}-${localDay}`;
                 
                 const { data: existingVisits, error: fetchError } = await supabaseTracker
                     .from('analytics')
